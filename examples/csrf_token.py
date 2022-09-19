@@ -22,12 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from datetime import datetime
 import requests
-
-# This time variable retrieves the current time in epoch format.
-# This is needed when you encode the password per Instagram's terms.
-time = int(datetime.now().timestamp())
 
 # This is the only header needed for now
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
