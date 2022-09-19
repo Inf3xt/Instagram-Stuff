@@ -29,17 +29,20 @@ import requests
 # This is needed when you encode the password per Instagram's terms.
 time = int(datetime.now().timestamp())
 
-# 
+# Header needed for now, but if you have any ideas of dictionaries; you and I know we can add stuff later on.
 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"}
-password = "dGFyYW5uYWdyYTE3OTFAIQ=="
+password = "password in plain text!"
 
 payload = {
-    "username": "inf3xtoid",
-    "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time}:{password}"
+    "username": "your instagram username",
+    "enc_password": f"#PWD_INSTAGRAM_BROWSER:0:{time}:{password}" # This formats the password in the way instagram wants it!
 }
 
+# If you have just came from csrf_token.py, requests.Session is the way to go!
 with requests.Session() as session:
     csrf_token = session.get("https://www.instagram.com/data/shared_data/", headers=headers)
     token = csrf_token.json()
 
-    print(token)
+    print(f"CSRF Token in use: {token}")
+    
+    
