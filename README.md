@@ -22,4 +22,5 @@ This repository is protected via the MIT licence. Please respect it and familiar
 
 ## Credits
 Instagram API - Instagram
+<br>
 The content on this repo - Inf3xt
