@@ -41,8 +41,30 @@ payload = {
 # If you have just came from csrf_token.py, requests.Session is the way to go!
 with requests.Session() as session:
     csrf_token = session.get("https://www.instagram.com/data/shared_data/", headers=headers)
-    token = csrf_token.json()
+    token = csrf_token.json()['config']['csrf_token'] # make sure you keep this safe! not like database with high password safe... well you can if you want :)
 
     print(f"CSRF Token in use: {token}")
+
+    # Here I will append the correct headers for the next request
+    headers['accept-language'] = "en-US,en;q=0.9"
+    headers['x-requested-with'] = "XMLHttpRequest"
+    headers['content-type'] = "application/x-www-form-urlencoded"
+    headers['accept'] = "/"
+    headers['referer'] = "https://www.instagram.com/accounts/login%22%7D"
+    headers['X-CSRFTOKEN'] = token # aren't ya glad you saved it now?
     
-    
+    # Adding the token to cookie!
+    cookies = {
+        "csrftoken": token 
+    }
+
+    # Finally, here is the request!
+    # With everything parsed, we are good to go!
+    login = session.post(
+        url="https://www.instagram.com/accounts/login/ajax/",
+        headers=headers,
+        data=payload,
+        cookies=cookies
+    )
+    print(login.json()['status'])
+    # If you have a status code of 200 and received the A-OK from Instagram, you have successfully logged into Instagram from Python!

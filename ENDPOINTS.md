@@ -32,12 +32,17 @@ This endpoint is where it all starts, you can't do anything without first using 
 | Key | Value | Description (if applicable) |
 |--------|-----------|-------------|
 | User-Agent | Your user agent here! | This is just your user agent. |
-| x-csrftoken | XXXXXXX | CSRF Token used for logging in. |
 | accept-language | en-US,en;q=0.9 | |
 | x-requested-with | XMLHttpRequest | |
 | content-type | application/x-www-form-urlencoded | |
 | accept | / | |
 | referer | https://www.instagram.com/accounts/login%22%7D | |
+
+**Cookies required** :
+
+| Key | Value | Description |
+| ------- | ------------- | ------------------ |
+| csrftoken | csrftoken | The csrftoken you got! |
 
 **Form data** :
 
@@ -61,7 +66,9 @@ Status code 200:
 
 ```jsonc
 {
-    
+    "user": true/false,
+    "authenticated": true,
+    "status": "ok" // we are looking for this A-OK
 }
 ```
 
