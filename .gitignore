@@ -1,0 +1,3 @@
+# Ignore the damn thing that auto pushes to GitHub
+# Why do something when you could automate it?
+push_to_github.bat
