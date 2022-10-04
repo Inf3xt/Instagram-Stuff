@@ -2,21 +2,18 @@
 
 The Instagram API provides a developer a good insite to how a massive web application works. My plan is to provide the knowhow and how to use these APIs that you find in your own applications. If I can do it, you can too - perhaps later on (or if many people want, I can release an awesome tutorial (lol)).
 
-<br>
-<br>
-
-# Table of contents
+## Table of contents
 - [Knowledge check!](#knowledge-check)
 - [Logging in](#logging-in)
 - [Generating CSRF Token](#generating-csrf-token)
 
-# Knowledge check!
+## Knowledge check!
 Before you continue, make sure you have the following:
 - Basic Python knowledge
 - Basic JSON knowledge
 - The ability to install packages via pip (you can use poetry/conda if that suits your needs better)
 
-# Logging in
+## Logging in
 This endpoint is where it all starts, you can't do anything without first using this and getting a successful response.
 
 **Base URL** : `https://www.instagram.com`
@@ -25,7 +22,7 @@ This endpoint is where it all starts, you can't do anything without first using 
 
 **Method** : `POST`
 
-## Request
+### Request
 
 **Headers required** : 
 
@@ -37,6 +34,8 @@ This endpoint is where it all starts, you can't do anything without first using 
 | content-type | application/x-www-form-urlencoded | |
 | accept | / | |
 | referer | https://www.instagram.com/accounts/login%22%7D | |
+| X-CSRFTOKEN | csrftoken | The csrftoken you got! |
+
 
 **Cookies required** :
 
@@ -60,19 +59,19 @@ This endpoint is where it all starts, you can't do anything without first using 
 }
 ```
 
-## Response
+### Response
 
 Status code 200:
 
 ```jsonc
 {
-    "user": true/false,
+    "user": true,
     "authenticated": true,
     "status": "ok" // we are looking for this A-OK
 }
 ```
 
-# Generating CSRF Token
+## Generating CSRF Token
 Without the CSRF token, you cannot login.
 
 **Base URL** : `https://www.instagram.com`
@@ -81,7 +80,7 @@ Without the CSRF token, you cannot login.
 
 **Method** : `GET`
 
-## Request
+### Request
 
 **Headers required** : 
 
@@ -89,7 +88,7 @@ Without the CSRF token, you cannot login.
 |--------|-----------|-------------|
 | User-Agent | Your user agent here! | This is just your user agent. |
 
-## Response
+### Response
 
 Assuming you get a 200 response:
 
